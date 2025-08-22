@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-
+import s from "../styles/base/components/app.module.scss";
 export class TestQuestion extends Component {
     render() {
         return (
-            <div className="question">
+            <div className={s.question}>
                 <h2>
                     Question #{this.props.questionId}: {this.props.questionText}
                 </h2>
@@ -22,7 +22,7 @@ export class TestQuestion extends Component {
                         </li>
                     ))}
                 </ul>
-                <button>Submit</button>
+                <button className={s.button}>Submit</button>
             </div>
         );
     }

@@ -1,0 +1,14 @@
+@use "./base/clearDefault" as *;
+@use "./base/colors" as *;
+@use "./base/mixins" as *;
+@use "./base/typography" as *;
+
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Courier New", Courier, monospace;
+}
+
+
