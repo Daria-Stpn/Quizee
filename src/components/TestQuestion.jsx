@@ -64,8 +64,10 @@ export class TestQuestion extends Component {
                     </button>
                     <button
                         className={s.button + " " + s.stop}
-                        onClick={() =>
+                        onClick={() =>{
+                            console.log(this.state.userAnswers)
                             this.props.stopQuiz(this.state.userAnswers)
+                        }
                         }
                     >
                         Stop Quiz

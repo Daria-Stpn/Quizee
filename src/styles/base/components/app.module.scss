@@ -44,3 +44,15 @@ main {
     justify-content: center;
 }
 
+ .correct {
+        color: green;
+        font-weight: bold;
+        list-style-type: "✓ ";
+    }
+
+
+    .wrong {
+        color: red;
+        font-weight: bold;
+        list-style-type: "✘ ";
+    }
