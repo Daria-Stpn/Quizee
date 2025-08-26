@@ -3,6 +3,7 @@ import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import TestQuestion from "./components/TestQuestion.jsx";
 import StartQuiz from "./components/StartQuiz.jsx";
+import QuizResults from "./components/QuizResults.jsx";
 
 export class App extends Component {
     constructor(props) {
@@ -10,11 +11,14 @@ export class App extends Component {
         this.state = {
             isQuizStarted: false,
             questionNumber: 0,
+            userAnswers: [],
+            showResults: false,
         };
         this.startQuiz = this.startQuiz.bind(this);
         this.nextQuestion = this.nextQuestion.bind(this);
         this.previousQuestion = this.previousQuestion.bind(this);
         this.stopQuiz = this.stopQuiz.bind(this);
+        this.tryAgain = this.tryAgain.bind(this);
     }
 
     startQuiz() {
@@ -39,15 +43,27 @@ export class App extends Component {
         }
     }
 
-    stopQuiz() {
+    tryAgain() {
         this.setState({
             isQuizStarted: false,
+            questionNumber: 0,
+            userAnswers: [],
+            showResults: false,
+        });
+    }
+
+    stopQuiz(answers) {
+        this.setState({
+            isQuizStarted: false,
+            userAnswers: answers,
+            showResults: true,
         });
     }
 
     quiz1 = {
         quizName: "HTML test",
         quizDescription: "Test your HTML knowledge",
+        time: 300,
         questions: [
             {
                 questionId: 1,
@@ -59,7 +75,7 @@ export class App extends Component {
                 questionId: 2,
                 questionText: "Which tag",
                 answers: ["h2", "s", "script", "input"],
-                correctAnswer: "style",
+                correctAnswer: "script",
             },
         ],
     };
@@ -90,6 +106,15 @@ export class App extends Component {
                             nextQuestion={this.nextQuestion}
                             previousQuestion={this.previousQuestion}
                             stopQuiz={this.stopQuiz}
+                            count={this.quiz1.questions.length}
+                            time={this.quiz1.time}
+                        />
+                    ) : this.state.showResults ? (
+                        <QuizResults
+                            name={this.quiz1.quizName}
+                            result={this.state.userAnswers.length}
+                            count={this.quiz1.questions.length}
+                            tryAgain={this.tryAgain}
                         />
                     ) : (
                         <StartQuiz
