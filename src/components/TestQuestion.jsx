@@ -7,6 +7,26 @@ export class TestQuestion extends Component {
                 <h2>
                     Question #{this.props.questionId}: {this.props.questionText}
                 </h2>
+                <div className={s.buttons}>
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => this.props.previousQuestion()}
+                    >
+                        Previous
+                    </button>
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => this.props.nextQuestion()}
+                    >
+                        Next
+                    </button>
+                    <button
+                        className={"btn btn-secondary m-2 " + s.stop}
+                        onClick={() => this.props.stopQuiz()}
+                    >
+                        Stop Quiz
+                    </button>
+                </div>
                 <ul>
                     {this.props.answers.map((answer, index) => (
                         <li key={index}>
